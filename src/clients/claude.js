@@ -2,16 +2,19 @@
  * Client for Anthropic's Messages API (Claude).
  * Docs: https://docs.claude.com/en/api/messages
  */
-export async function askClaude(prompt, { apiKey, model = "claude-sonnet-4-6", system, maxTokens = 1024 } = {}) {
+export async function askClaude(prompt, { apiKey, model = "claude-sonnet-4-6", system, maxTokens = 1024, workspaceId } = {}) {
   if (!apiKey) throw new Error("Missing ANTHROPIC_API_KEY");
+
+  const headers = {
+    "content-type": "application/json",
+    "x-api-key": apiKey,
+    "anthropic-version": "2023-06-01",
+  };
+  if (workspaceId) headers["anthropic-workspace-id"] = workspaceId;
 
   const res = await fetch("https://api.anthropic.com/v1/messages", {
     method: "POST",
-    headers: {
-      "content-type": "application/json",
-      "x-api-key": apiKey,
-      "anthropic-version": "2023-06-01",
-    },
+    headers,
     body: JSON.stringify({
       model,
       max_tokens: maxTokens,
