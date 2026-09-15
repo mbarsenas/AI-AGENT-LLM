@@ -1,0 +1,5 @@
+# These enable the native "Sponsor" button on the GitHub repo page.
+# Fill in whichever of these you actually have — delete the rest.
+github: [mbarsenas]
+# ko_fi: YOUR_KOFI_USERNAME
+# custom: ["https://www.paypal.com/donate/?hosted_button_id=YOUR_PAYPAL_BUTTON_ID"]
